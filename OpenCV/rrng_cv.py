@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv
 import time
 
-threshold = 90
+threshold = 60
 
 def iniciar_captura():
     global cap
@@ -43,11 +43,26 @@ def obter_face():
     
     return None if circulos == None else len(circulos)
 
+# auxiliar para reduzir o impacto das instabilidades na leitura das faces
+def obter_face_mais_frequente():
+    faces = []
+    for i in range(10):
+        face = obter_face()
+        if(face is not None):   
+            faces.append(face)
+    
+    if(len(faces) == 0):
+        return None
+
+    unicos, contagem = np.unique(faces, return_counts=True)
+    index = np.argmax(contagem)
+    return unicos[index]
+
 def obter_face_ate_sucesso():
     # tentar ler a imagem até ela parar para garantir que vai ser um dado válido
     tentativas = 0
     while(tentativas < 10):
-        face = obter_face()
+        face = obter_face_mais_frequente()
         if face == None:
             print("sem face válida...")
             time.sleep(0.5)
@@ -57,6 +72,6 @@ def obter_face_ate_sucesso():
     return None
         
 
-iniciar_captura()
-obter_face_ate_sucesso()
-encerrar_captura()
+#iniciar_captura()
+#print(obter_face_ate_sucesso())
+#encerrar_captura()
