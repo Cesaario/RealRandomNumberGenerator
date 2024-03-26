@@ -2,7 +2,9 @@ import numpy as np
 import cv2 as cv
 cap = cv.VideoCapture(0)
 
-threshold = 200
+# 70 parece um bom threshold
+
+threshold = 70
 
 def obter_frame():
     global threshold
