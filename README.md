@@ -2,6 +2,6 @@
 
 In progress...
 
-- [ ] Computer Vision
-- [ ] BackEnd
-- [ ] FrontEnd
+- Zion: Arduino
+- Aura: Python/OpenCV
+- 
