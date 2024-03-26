@@ -18,7 +18,6 @@ void setup()
 
 void loop()
 {
-  delay(1000);
   if (Serial.available() <= 0 && !teste)
     return;
 
@@ -32,7 +31,7 @@ void loop()
     digitalWrite(PINO_MOTOR, LOW);
     digitalWrite(PINO_MOTOR_INVERSO, HIGH);
     digitalWrite(LED_BUILTIN, LOW);
-    delay(750);
+    delay(700);
     digitalWrite(PINO_MOTOR_INVERSO, LOW);
   }
 }
