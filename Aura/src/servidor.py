@@ -5,15 +5,24 @@ import numero_pb2
 import rrng_serial
 import rrng_cv
 
+# Utilizado somente para fins de testes
+# Seria um crime usar random no REAL Random Number Generator
+import random
+
+MOCK_DADO = True
+
 class NumeroServicer(numero_pb2_grpc.NumeroServicer):
     def ObterNumero(self, request, context):
-        rrng_serial.iniciar_serial()
-        rrng_serial.rodar_dado()
-        rrng_serial.encerrar_serial()
 
-        rrng_cv.iniciar_captura()
-        face = rrng_cv.obter_face_ate_sucesso()
-        rrng_cv.encerrar_captura()
+        if MOCK_DADO:
+            return numero_pb2.RepostaNumero(numero=random.randint(1, 6))
+
+        print("Rodando dado...")
+        rrng_serial.rodar_dado()
+
+        print("Lendo face...")
+        face = rrng_cv.obter_face_dado_com_captura()
+        print("Face obtida", face)
 
         return numero_pb2.RepostaNumero(numero=face)
 
@@ -22,7 +31,7 @@ def serve():
     numero_pb2_grpc.add_NumeroServicer_to_server(NumeroServicer(), server)
     server.add_insecure_port("[::]:50051")
     server.start()
-    print("Servidor gRPC executando...")
+    print("Servidor gRPC executando na porta 50051...")
     server.wait_for_termination()
 
 if __name__ == "__main__":

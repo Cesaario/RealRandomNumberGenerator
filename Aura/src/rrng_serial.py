@@ -2,8 +2,9 @@ import serial
 import time
 
 def rodar_dado():
-    print("exec")
+    iniciar_serial()
     ser.write('RODAR_DADO;'.encode('ascii'))
+    encerrar_serial()
 
 def iniciar_serial():
     global ser
@@ -12,5 +13,4 @@ def iniciar_serial():
 
 def encerrar_serial():
     time.sleep(2)
-    print("closing")
     ser.close()

@@ -70,6 +70,13 @@ def obter_face_ate_sucesso():
         else:
             return face
     return None
+
+def obter_face_dado_com_captura():
+    iniciar_captura()
+    face = obter_face_ate_sucesso()
+    encerrar_captura()
+
+    return face
         
 
 #iniciar_captura()
