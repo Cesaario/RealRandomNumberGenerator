@@ -1,2 +1,4 @@
-Aura/__pycache__/*
-Aura/src/__pycache__/*
+DiceReader/__pycache__/*
+DiceReader/src/__pycache__/*
+
+.env
