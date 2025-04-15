@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// A definição de um serviço contendo um número gerado aleatoriamente
+service Numero {
+    // Obtém um número aleatório
+    rpc ObterNumero (RequisicaoNumero) returns (RepostaNumero) {}
+}
+
+// Não são necessários parâmetros para a requisição
+message RequisicaoNumero {}
+
+// A resposta contendo o número aleatório
+message RepostaNumero {
+    int32 numero = 1;
+}

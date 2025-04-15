@@ -9,6 +9,7 @@ defmodule RrngBackendWeb.Router do
     pipe_through :api
 
     get "/", WelcomeController, :index
+    get "/numero", NumeroController, :index
   end
 
   # Enable LiveDashboard in development
