@@ -10,6 +10,7 @@ defmodule RrngBackendWeb.Router do
 
     get "/", WelcomeController, :index
     get "/numero", NumeroController, :index
+    get "/info/queue", InfoController, :queue
   end
 
   # Enable LiveDashboard in development
