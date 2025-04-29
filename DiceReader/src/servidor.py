@@ -8,6 +8,7 @@ import rrng_cv
 # Utilizado somente para fins de testes
 # Seria um crime usar random no REAL Random Number Generator
 import random
+import time
 
 MOCK_DADO = True
 
@@ -15,6 +16,7 @@ class NumeroServicer(numero_pb2_grpc.NumeroServicer):
     def ObterNumero(self, request, context):
 
         if MOCK_DADO:
+            time.sleep(2)
             return numero_pb2.RepostaNumero(numero=random.randint(1, 6))
 
         print("Rodando dado...")

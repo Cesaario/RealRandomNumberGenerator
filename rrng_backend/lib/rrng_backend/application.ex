@@ -9,13 +9,14 @@ defmodule RrngBackend.Application do
   def start(_type, _args) do
     children = [
       RrngBackendWeb.Telemetry,
-      RrngBackend.Repo,
+      # RrngBackend.Repo,
       {DNSCluster, query: Application.get_env(:rrng_backend, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: RrngBackend.PubSub},
       # Start a worker by calling: RrngBackend.Worker.start_link(arg)
       # {RrngBackend.Worker, arg},
       # Start to serve requests, typically the last entry
-      RrngBackendWeb.Endpoint
+      RrngBackendWeb.Endpoint,
+      RrngBackend.DiceReaderQueue
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
