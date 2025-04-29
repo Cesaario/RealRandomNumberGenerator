@@ -1,14 +1,14 @@
 import Config
 
 # Configure your database
-config :rrng_backend, RrngBackend.Repo,
-  username: "user",
-  password: "mamacao",
-  hostname: "localhost",
-  database: "rrng_backend_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+# config :rrng_backend, RrngBackend.Repo,
+#   username: "user",
+#   password: "mamacao",
+#   hostname: "localhost",
+#   database: "rrng_backend_dev",
+#   stacktrace: true,
+#   show_sensitive_data_on_connection_error: true,
+#   pool_size: 10
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
