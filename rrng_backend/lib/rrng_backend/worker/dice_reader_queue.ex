@@ -2,7 +2,6 @@ defmodule RrngBackend.DiceReaderQueue do
 
   @lock_name :dice_reader_lock
   @lock_limit 1
-  @timeout 5 * 60 * 1000
 
   def initialize_lock do
     ExSleeplock.new(@lock_name, @lock_limit)
@@ -13,15 +12,12 @@ defmodule RrngBackend.DiceReaderQueue do
 
     result =
       try do
-        RrngBackend.GrpcClient.obter_numero()
+        :timer.tc(RrngBackend.GrpcClient, :obter_numero, [])
       after
         ExSleeplock.release(@lock_name)
       end
 
-    case result do
-      {:ok, numero} -> {:ok, numero}
-      error -> error
-    end
+    result
   end
 
   def get_queue_info() do

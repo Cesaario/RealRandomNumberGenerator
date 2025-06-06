@@ -1,10 +1,9 @@
 defmodule RrngBackend.GrpcClient do
   def obter_numero do
-    {:ok, channel} = GRPC.Stub.connect("localhost:50051")
-    request = %RequisicaoNumero{}
-
-    case Numero.Stub.obter_numero(channel, request) do
-      {:ok, response} -> {:ok, response.numero}
+    with {:ok, channel} <- GRPC.Stub.connect("localhost:50051"),
+         {:ok, response} <- Numero.Stub.obter_numero(channel, %RequisicaoNumero{}) do
+      {:ok, response.numero}
+    else
       {:error, reason} -> {:error, reason}
     end
   end
